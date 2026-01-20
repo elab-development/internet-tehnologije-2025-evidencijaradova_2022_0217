@@ -5,13 +5,10 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
@@ -22,6 +19,13 @@ enum Role {
   admin
 }
 
+enum WorkStatus {
+  pending_review
+  in_review
+  graded
+  rejected
+}
+
 model User {
   id           String   @id @default(cuid())
   fullName     String
@@ -29,6 +33,30 @@ model User {
   passwordHash String
   role         Role     @default(student)
 
+  works        Work[]
+
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model Work {
+  id          String     @id @default(cuid())
+
+  studentId   String
+  student     User       @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  title       String
+  subject     String
+  description String?    @db.Text
+  fileUrl     String
+
+  status      WorkStatus @default(pending_review)
+  submittedAt DateTime   @default(now())
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([studentId])
+  @@index([submittedAt])
+  @@index([status])
 }
