@@ -186,7 +186,7 @@ export async function getWorkById(req, res) {
  * UPDATE WORK (ONLY PENDING)
  * ============================================
  * Naziv: Update Work
- * Metoda: PATCH
+ * Metoda: PUT
  * Ruta: /api/works/:id
  *
  * Opis:

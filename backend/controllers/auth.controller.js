@@ -25,23 +25,18 @@ const SALT_ROUNDS = 10;
  * - fullName (string) – puno ime korisnika
  * - email (string) – email adresa (jedinstvena)
  * - password (string) – lozinka u čistom tekstu
- * - role (string, opcionalno) – student | teacher (admin nije dozvoljen)
  *
  * Odgovor:
  * - 201 Created + objekat korisnika (bez lozinke)
  */
 export async function register(req, res) {
   try {
-    const { fullName, email, password, role } = req.body;
+    const { fullName, email, password } = req.body;
 
     if (!fullName || !email || !password) {
       return res
         .status(400)
         .json({ message: 'fullName, email and password are required' });
-    }
-
-    if (role && role === 'admin') {
-      return res.status(403).json({ message: 'Cannot register as admin' });
     }
 
     const existing = await prisma.user.findUnique({ where: { email } });
@@ -55,7 +50,7 @@ export async function register(req, res) {
         fullName,
         email,
         passwordHash,
-        role: role ?? 'student',
+        role: 'student',
       },
       select: {
         id: true,

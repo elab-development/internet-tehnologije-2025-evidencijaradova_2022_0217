@@ -18,7 +18,7 @@ router.post('/', requireRole('student'), upload.single('file'), createWork);
 router.get('/', listWorks);
 router.get('/:id', getWorkById);
 
-router.patch('/:id', requireRole('student'), updateWork);
+router.put('/:id', requireRole('student'), updateWork);
 router.delete('/:id', requireRole('student'), deleteWork);
 
 export default router;

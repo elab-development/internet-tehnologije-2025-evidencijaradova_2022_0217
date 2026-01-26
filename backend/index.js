@@ -4,7 +4,9 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
 import workRoutes from './routes/work.routes.js';
+import gradeRoutes from './routes/grade.routes.js';
 
 dotenv.config();
 
@@ -21,7 +23,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/works', workRoutes);
+app.use('/api/grades', gradeRoutes);
 
 const PORT = process.env.PORT || 8000;
 
