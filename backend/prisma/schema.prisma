@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -57,7 +54,9 @@ model Work {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
-  grade       Grade?
+  grade             Grade?
+  plagiarismReport  PlagiarismReport?
+  aiReport          AIReport?
 
   @@index([studentId])
   @@index([submittedAt])
@@ -82,4 +81,36 @@ model Grade {
 
   @@index([teacherId])
   @@index([gradedAt])
+}
+
+model PlagiarismReport {
+  id                   String   @id @default(cuid())
+
+  workId               String   @unique
+  work                 Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  similarityPercentage Float
+  sources              Json     
+  reportUrl            String
+
+  createdAt            DateTime @default(now())
+
+  @@index([workId])
+  @@index([createdAt])
+}
+
+model AIReport {
+  id               String   @id @default(cuid())
+
+  workId            String  @unique
+  work              Work    @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  aiScore          Float
+  summary          String?  @db.Text
+  reccomendations  String?  @db.Text
+
+  createdAt        DateTime @default(now())
+
+  @@index([workId])
+  @@index([createdAt])
 }
