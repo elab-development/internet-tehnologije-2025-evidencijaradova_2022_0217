@@ -70,7 +70,7 @@ export async function createPlagiarismReport(req, res) {
       result.similarityPercentage ?? result.similarity ?? 0,
     );
     const sources = Array.isArray(result.sources) ? result.sources : [];
-    const reportUrl = String(result.reportUrl ?? result.report_url ?? '');
+    const reportUrl = String(result.reportUrl ?? result.reportUrl ?? '');
 
     const report = await prisma.plagiarismReport.create({
       data: {

@@ -14,7 +14,7 @@ function getClient() {
   return axios.create({
     baseURL,
     headers: {
-      'X-API-TOKEN': token, // docs zahtevaju X-API-TOKEN :contentReference[oaicite:1]{index=1}
+      'X-API-TOKEN': token,
     },
     timeout: 60_000,
   });

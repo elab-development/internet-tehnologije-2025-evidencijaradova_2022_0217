@@ -26,6 +26,7 @@ export const useAIReportsStore = create((set) => ({
       });
       return data.report;
     } catch (err) {
+      console.log(err);
       set({
         isLoading: false,
         error: apiError(err, 'Create AI report failed'),

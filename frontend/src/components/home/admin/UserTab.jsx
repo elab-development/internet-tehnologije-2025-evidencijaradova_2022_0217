@@ -89,7 +89,7 @@ export default function UsersTab() {
       )}
 
       <div className='mt-5 hidden overflow-x-auto md:block'>
-        <table className='w-full min-w-[760px] text-left text-sm'>
+        <table className='w-full min-w-190 text-left text-sm'>
           <thead>
             <tr className='text-slate-600'>
               <th className='px-3 py-3 font-semibold'>User</th>

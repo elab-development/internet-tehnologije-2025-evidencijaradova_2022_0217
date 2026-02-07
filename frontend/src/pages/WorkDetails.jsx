@@ -134,9 +134,13 @@ export default function WorkDetails() {
   }
 
   async function handleGenerateAI() {
-    if (!work?.id) return;
-    await aiCreate(work.id);
-    await aiFetch(work.id);
+    try {
+      if (!work?.id) return;
+      await aiCreate(work.id);
+      await aiFetch(work.id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function handleSubmitGrade(e) {
@@ -255,7 +259,7 @@ export default function WorkDetails() {
 
             <div className='min-w-0'>
               <div className='flex flex-wrap items-center gap-2'>
-                <h3 className='max-w-[560px] truncate text-xl font-semibold text-blue-950'>
+                <h3 className='max-w-140 truncate text-xl font-semibold text-blue-950'>
                   {work?.title}
                 </h3>
 

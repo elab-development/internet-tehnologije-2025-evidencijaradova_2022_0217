@@ -204,7 +204,7 @@ export default function StudentScreen() {
                 const f = e.dataTransfer.files?.[0];
                 onPickFile(f);
               }}
-              className='mt-1 flex min-h-[220px] cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 text-center shadow-sm transition hover:bg-blue-50'
+              className='mt-1 flex min-h-55 cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50/40 p-6 text-center shadow-sm transition hover:bg-blue-50'
             >
               <div className='flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-blue-700 ring-1 ring-blue-100'>
                 <UploadCloud size={22} />

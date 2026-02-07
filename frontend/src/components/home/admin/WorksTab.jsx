@@ -180,7 +180,7 @@ export default function WorksTab() {
           </div>
         ) : (
           <div className='overflow-x-auto rounded-2xl ring-1 ring-slate-200'>
-            <table className='w-full min-w-[1100px] text-left text-sm'>
+            <table className='w-full min-w-275 text-left text-sm'>
               <thead className='bg-blue-50'>
                 <tr className='text-slate-700'>
                   <th className='px-4 py-3 font-semibold'>Work</th>

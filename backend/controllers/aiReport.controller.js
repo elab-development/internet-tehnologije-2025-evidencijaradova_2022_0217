@@ -60,7 +60,7 @@ export async function createAIReport(req, res) {
       ai = await generateAIReportFromText(text);
     } catch (e) {
       const msg = e?.response?.data?.error?.message || e?.message || '';
-
+      console.log(e);
       ai = {
         aiScore: 0,
         summary: '',
@@ -86,6 +86,7 @@ export async function createAIReport(req, res) {
     if (err?.code === 'P2002') {
       return res.status(409).json({ message: 'AI report already exists' });
     }
+    console.log(err);
     return res.status(500).json({ message: 'Server error' });
   }
 }

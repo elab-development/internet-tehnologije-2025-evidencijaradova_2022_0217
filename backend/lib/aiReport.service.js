@@ -22,25 +22,29 @@ Text:
 ${text}
 `;
 
-  const resp = await axios.post(
-    'https://api.groq.com/openai/v1/chat/completions',
-    {
-      model,
-      messages: [
-        { role: 'system', content: system.trim() },
-        { role: 'user', content: user.trim() },
-      ],
-      temperature: 0.2,
-      response_format: { type: 'json_object' },
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
+  try {
+    const resp = await axios.post(
+      'https://api.groq.com/openai/v1/chat/completions',
+      {
+        model,
+        messages: [
+          { role: 'system', content: system.trim() },
+          { role: 'user', content: user.trim() },
+        ],
+        temperature: 0.2,
+        response_format: { type: 'json_object' },
       },
-      timeout: 60_000,
-    },
-  );
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        timeout: 60_000,
+      },
+    );
+  } catch (err) {
+    console.log(err);
+  }
 
   const content = resp?.data?.choices?.[0]?.message?.content;
   if (!content) throw new Error('AI service returned empty content');
@@ -48,7 +52,8 @@ ${text}
   let parsed;
   try {
     parsed = JSON.parse(content);
-  } catch {
+  } catch (err) {
+    console.log(err);
     throw new Error('AI service did not return valid JSON');
   }
 

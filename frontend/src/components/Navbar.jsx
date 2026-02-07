@@ -69,7 +69,7 @@ export default function Navbar() {
                   </div>
                   <div className='flex items-center gap-1 text-xs text-blue-100'>
                     <Mail size={14} />
-                    <span className='max-w-[220px] truncate'>{user.email}</span>
+                    <span className='max-w-55 truncate'>{user.email}</span>
                   </div>
                 </div>
               </div>
