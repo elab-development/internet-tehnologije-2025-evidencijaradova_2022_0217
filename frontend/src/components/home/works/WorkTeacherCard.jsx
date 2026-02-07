@@ -60,12 +60,14 @@ export default function WorkTeacherCard({ work, plagiarism, ai }) {
           <div className='mt-3 flex flex-wrap items-center gap-2 text-sm'>
             <span className='inline-flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1 text-slate-700 ring-1 ring-slate-200'>
               <User2 size={16} />
-              <span className='truncate'>{studentName}</span>
-              {studentEmail ? (
-                <span className='hidden text-slate-500 sm:inline'>
-                  • {studentEmail}
-                </span>
-              ) : null}
+              <div className='flex flex-col'>
+                <span className='truncate'>{studentName}</span>
+                {studentEmail ? (
+                  <span className='hidden text-slate-500 sm:inline'>
+                    {studentEmail}
+                  </span>
+                ) : null}
+              </div>
             </span>
           </div>
 

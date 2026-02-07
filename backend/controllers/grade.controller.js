@@ -38,31 +38,57 @@ export async function createGrade(req, res) {
         .json({ message: 'gradeValue must be an integer between 1 and 10' });
     }
 
-    const work = await prisma.work.findUnique({ where: { id: workId } });
-    if (!work) return res.status(404).json({ message: 'Work not found' });
+    const work = await prisma.work.findUnique({
+      where: { id: workId },
+    });
+
+    if (!work) {
+      return res.status(404).json({ message: 'Work not found' });
+    }
+
+    const newStatus = gradeValue <= 5 ? 'rejected' : 'graded';
 
     try {
-      const grade = await prisma.grade.create({
-        data: {
-          workId,
-          teacherId: req.user.id,
-          gradeValue,
-          comment: typeof comment === 'string' ? comment : null,
-        },
-        include: {
-          work: {
-            select: { id: true, title: true, subject: true, studentId: true },
+      const result = await prisma.$transaction(async (tx) => {
+        const grade = await tx.grade.create({
+          data: {
+            workId,
+            teacherId: req.user.id,
+            gradeValue,
+            comment: typeof comment === 'string' ? comment : null,
           },
-          teacher: {
-            select: { id: true, fullName: true, email: true, role: true },
+          include: {
+            work: {
+              select: {
+                id: true,
+                title: true,
+                subject: true,
+                studentId: true,
+              },
+            },
+            teacher: {
+              select: {
+                id: true,
+                fullName: true,
+                email: true,
+                role: true,
+              },
+            },
           },
-        },
+        });
+
+        await tx.work.update({
+          where: { id: workId },
+          data: {
+            status: newStatus,
+          },
+        });
+
+        return grade;
       });
 
-      return res.status(201).json({ grade });
+      return res.status(201).json({ grade: result });
     } catch (e) {
-      // Prisma unique constraint error
-      // MySQL: P2002 = Unique constraint failed
       if (e?.code === 'P2002') {
         return res
           .status(409)
@@ -71,6 +97,7 @@ export async function createGrade(req, res) {
       throw e;
     }
   } catch (err) {
+    console.error(err);
     return res.status(500).json({ message: 'Server error' });
   }
 }
