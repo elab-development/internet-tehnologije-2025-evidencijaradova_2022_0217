@@ -15,8 +15,6 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const redirectTo = location.state?.from || '/';
-
   useEffect(() => {
     clearError();
   }, []);
@@ -26,8 +24,10 @@ export default function Login() {
     clearError();
 
     try {
-      await login({ email, password });
-      navigate(redirectTo, { replace: true });
+      const res = await login({ email, password });
+      if (res?.user) {
+        navigate('/');
+      }
     } catch {}
   }
 

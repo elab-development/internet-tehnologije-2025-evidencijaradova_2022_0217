@@ -28,8 +28,10 @@ export default function Register() {
     if (password !== confirm) return;
 
     try {
-      await register({ fullName, email, password });
-      navigate('/', { replace: true });
+      const res = await register({ fullName, email, password });
+      if (res?.user) {
+        navigate('/');
+      }
     } catch {}
   }
 
