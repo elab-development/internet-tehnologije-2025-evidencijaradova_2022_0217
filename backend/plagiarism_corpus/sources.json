@@ -1,0 +1,28 @@
+{
+    "sources": [
+      {
+        "id": "wiki_artificial_intelligence",
+        "title": "Wikipedia - Artificial intelligence",
+        "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+        "type": "wikipedia"
+      },
+      {
+        "id": "wiki_machine_learning",
+        "title": "Wikipedia - Machine learning",
+        "url": "https://en.wikipedia.org/wiki/Machine_learning",
+        "type": "wikipedia"
+      },
+      {
+        "id": "gutenberg_pride_prejudice",
+        "title": "Project Gutenberg - Pride and Prejudice",
+        "url": "https://www.gutenberg.org/cache/epub/1342/pg1342.txt",
+        "type": "text"
+      },
+      {
+        "id": "gutenberg_frankenstein",
+        "title": "Project Gutenberg - Frankenstein",
+        "url": "https://www.gutenberg.org/cache/epub/84/pg84.txt",
+        "type": "text"
+      }
+    ]
+  }
