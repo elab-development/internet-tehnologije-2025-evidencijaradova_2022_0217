@@ -9,6 +9,7 @@ import workRoutes from './routes/work.routes.js';
 import gradeRoutes from './routes/grade.routes.js';
 import plagiarismReportRoutes from './routes/plagiarismReport.routes.js';
 import aiReportRoutes from './routes/aiReport.routes.js';
+import adminStatsRoutes from './routes/adminStats.routes.js';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use('/api/works', workRoutes);
 app.use('/api/grades', gradeRoutes);
 app.use('/api/plagiarism-reports', plagiarismReportRoutes);
 app.use('/api/ai-reports', aiReportRoutes);
+app.use('/api/admin', adminStatsRoutes);
 
 const PORT = process.env.PORT || 8000;
 

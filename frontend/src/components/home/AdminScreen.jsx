@@ -1,14 +1,16 @@
 import { useMemo, useState } from 'react';
-import { Users, FileText } from 'lucide-react';
+import { Users, FileText, BarChart3 } from 'lucide-react';
 
+import OverviewTab from './admin/OverviewTab';
 import UsersTab from './admin/UsersTab';
 import WorksTab from './admin/WorksTab';
 
 export default function AdminScreen() {
-  const [tab, setTab] = useState('users');
+  const [tab, setTab] = useState('overview');
 
   const tabs = useMemo(
     () => [
+      { key: 'overview', label: 'Overview', Icon: BarChart3 },
       { key: 'users', label: 'Users', Icon: Users },
       { key: 'works', label: 'Works', Icon: FileText },
     ],
@@ -51,7 +53,13 @@ export default function AdminScreen() {
       </div>
 
       <div className='mt-6'>
-        {tab === 'users' ? <UsersTab /> : <WorksTab />}
+        {tab === 'overview' ? (
+          <OverviewTab />
+        ) : tab === 'users' ? (
+          <UsersTab />
+        ) : (
+          <WorksTab />
+        )}
       </div>
     </div>
   );
