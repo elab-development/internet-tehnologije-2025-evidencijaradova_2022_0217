@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import swaggerUi from 'swagger-ui-express';
 
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -10,6 +11,7 @@ import gradeRoutes from './routes/grade.routes.js';
 import plagiarismReportRoutes from './routes/plagiarismReport.routes.js';
 import aiReportRoutes from './routes/aiReport.routes.js';
 import adminStatsRoutes from './routes/adminStats.routes.js';
+import { swaggerSpec } from './docs/swagger.js';
 
 dotenv.config();
 
@@ -32,6 +34,8 @@ app.use('/api/grades', gradeRoutes);
 app.use('/api/plagiarism-reports', plagiarismReportRoutes);
 app.use('/api/ai-reports', aiReportRoutes);
 app.use('/api/admin', adminStatsRoutes);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const PORT = process.env.PORT || 8000;
 
