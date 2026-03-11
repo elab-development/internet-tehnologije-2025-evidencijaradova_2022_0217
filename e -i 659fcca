@@ -1,0 +1,21 @@
+[33m43e1881[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Revert "docker & ci/cd"
+[33mfa496bc[m fix
+[33m659fcca[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m docker & ci/cd
+[33m47ed51e[m test
+[33m585c036[m[33m ([m[1;31morigin/my-dev-branch[m[33m, [m[1;31morigin/development[m[33m, [m[1;32mmy-dev-branch[m[33m, [m[1;32mdevelopment[m[33m)[m Swagger
+[33m3457975[m Tests
+[33m779e583[m[33m ([m[1;31morigin/feature/dashboard[m[33m, [m[1;32mfeature/dashboard[m[33m)[m Admin dashboard update
+[33mae76066[m[33m ([m[1;31morigin/feature/plagApi[m[33m, [m[1;32mfeature/plagApi[m[33m)[m PlagChecker Update
+[33m999148c[m Fix
+[33m34a7e56[m Fixes
+[33mac882c0[m AdminDashBoard
+[33mb088912[m Work Details Page
+[33m79779ff[m frontend-homepage for guest, student and teacher
+[33mef50ece[m frontend-auth
+[33m346ebaa[m frontend-stores, pages with router
+[33ma7becc9[m frontend init
+[33m85b9e88[m Reports models, routes, services, controllers
+[33m5016632[m Grade model, routes,controller, users controller, admin routes
+[33mbbd14a4[m Work model, routes and controller + cloudinary upload
+[33m5fad4db[m Backend Auth
+[33m9613478[m Prvi commit
