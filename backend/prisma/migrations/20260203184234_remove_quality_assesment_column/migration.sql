@@ -5,4 +5,4 @@
 
 */
 -- AlterTable
-ALTER TABLE `AIReport` DROP COLUMN `qualityAssesment`;
+ALTER TABLE `aireport` DROP COLUMN `qualityAssesment`;
